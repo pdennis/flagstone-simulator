@@ -355,6 +355,15 @@ class FlagstoneSimulator {
         this.draw();
     }
     
+    addRandomStone() {
+        const newStone = this.createStone(
+            200 + Math.random() * 400,
+            200 + Math.random() * 200
+        );
+        this.stones.push(newStone);
+        this.draw();
+    }
+    
     lightenColor(color, percent) {
         const num = parseInt(color.replace("#", ""), 16);
         const amt = Math.round(2.55 * percent);
@@ -399,6 +408,10 @@ function clearCanvas() {
 
 function generateRandomStones() {
     simulator.generateRandomStones();
+}
+
+function addRandomStone() {
+    simulator.addRandomStone();
 }
 
 function toggleGrid() {
