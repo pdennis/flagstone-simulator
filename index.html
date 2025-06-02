@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flagstone Simulator</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #8B7355 0%, #A0926A 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #4A4A4A;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+        
+        .canvas-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        canvas {
+            border: 3px solid #654321;
+            border-radius: 10px;
+            background: #F5E6D3;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        
+        .controls {
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .control-group {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 10px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 8px;
+        }
+        
+        button {
+            background: #8B4513;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        button:hover {
+            background: #A0522D;
+        }
+        
+        button:active {
+            transform: translateY(1px);
+        }
+        
+        .info {
+            background: rgba(255,255,255,0.9);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .stone-palette {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .palette-title {
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🪨 Flagstone Simulator</h1>
+        <p class="subtitle">Practice rotating, flipping, and arranging natural stone shapes to create beautiful pathways</p>
+        
+        <div class="stone-palette">
+            <div class="palette-title">Stone Palette (Click to spawn new stones)</div>
+            <canvas id="paletteCanvas" width="800" height="120"></canvas>
+        </div>
+        
+        <div class="canvas-container">
+            <canvas id="gameCanvas" width="800" height="600"></canvas>
+        </div>
+        
+        <div class="controls">
+            <div class="control-group">
+                <strong>Stone Controls:</strong><br>
+                <button onclick="clearCanvas()">Clear All</button>
+                <button onclick="generateRandomStones()">New Random Stones</button>
+                <button onclick="deleteSelected()">Delete Selected</button>
+            </div>
+            
+            <div class="control-group">
+                <strong>Selected Stone:</strong><br>
+                <button onclick="rotateSelected(15)">Rotate ↻</button>
+                <button onclick="rotateSelected(-15)">Rotate ↺</button>
+                <button onclick="flipSelected()">Flip</button>
+            </div>
+            
+            <div class="control-group">
+                <strong>View:</strong><br>
+                <button onclick="toggleGrid()">Toggle Grid</button>
+                <button onclick="toggleSnap()">Toggle Snap</button>
+            </div>
+        </div>
+        
+        <div class="info">
+            <strong>Instructions:</strong> 
+            Click stones from the palette to add them to your workspace. 
+            Drag stones to move them. Use rotation and flip buttons for precise positioning. 
+            Try to create pleasing patterns with minimal gaps!
+        </div>
+    </div>
+
+    <script src="flagstone.js"></script>
+</body>
+</html>
